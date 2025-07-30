@@ -94,6 +94,19 @@ interface MomentCardProps {
   onToggleExpand: () => void;
 }
 
+
+const imageMap: { [key: string]: any } = {
+  'home1.jpg': require('../../assets/images/home1.jpg'),
+  'img1.png': require('../../assets/images/home2.jpg'),
+  'img2.png': require('../../assets/images/home3.jpg'),
+  'img3.png': require('../../assets/images/home4.jpg'),
+  'img4.png': require('../../assets/images/home5.png'),
+  'img5.png': require('../../assets/images/home6.jpg'),
+  'img6.png': require('../../assets/images/home7.png'),
+  'img7.png': require('../../assets/images/home8.jpg'),
+  'img8.png': require('../../assets/images/home9.jpg'),
+};
+
 const MomentCard: React.FC<MomentCardProps> = ({
   date,
   location,
@@ -114,12 +127,11 @@ const MomentCard: React.FC<MomentCardProps> = ({
           if (isLastAndOdd) {
             return (
               <View key={index} style={styles.fullWidthImageContainer}>
-                <Image 
-                  source={{ uri: `file:///${image}` }} 
-                  
-                  style={styles.fullWidthImage}
-                  resizeMode="cover"
-                />
+              <Image 
+  source={imageMap[image]} 
+  style={styles.momentImage}
+  resizeMode="cover"
+/>
                 {index === 2 && (
                   <View style={styles.bestMomentBadge}>
                     <Text style={styles.bestMomentText}>Best Moment Of The Day</Text>
@@ -131,12 +143,12 @@ const MomentCard: React.FC<MomentCardProps> = ({
           
           return (
             <View key={index} style={styles.imageContainer}>
-              <Image 
-                source={{ uri: `file:///${image}` }} 
-                
-                style={styles.momentImage}
-                resizeMode="cover"
-              />
+             <Image 
+  source={imageMap[image]} 
+  style={styles.fullWidthImage}
+  resizeMode="cover"
+/>
+
               {index === 2 && !isExpanded && (
                 <View style={styles.bestMomentBadge}>
                   <Text style={styles.bestMomentText}>Best Moment Of The Day</Text>
@@ -195,7 +207,7 @@ const Homescreen: React.FC = () => {
       date: 'July 07, 2025',
       location: 'Metro Manila, Philippines',
       description: 'You spent time outdoors — surrounded by trees, sunlight, and the quiet rhythm of the city.',
-      images: ['img1.png', 'img2.png', 'img3.png', 'img4.png', 'img5.png', 'img6.png', 'img7.png', 'img8.png']
+      images: ['home1.jpg', 'home1.jpg', 'home1.jpg', 'home1.jpg', 'home1.jpg', 'home1.jpg', 'home1.jpg', 'home1.jpg']
     },
     {
       id: 2,
@@ -252,10 +264,11 @@ const styles = StyleSheet.create({
   
   
   moodContainer: {
-    backgroundColor: '#1DD1A1', // Teal color matching the screenshot
-    paddingTop:10,
+    backgroundColor: '#3DC4AB', // Teal color matching the screenshot
+    paddingTop:12,
     
-    marginBottom: 16,
+    marginBottom: 14,
+    paddingVertical:18
   },
   moodTitle: {
     color: '#000000',
@@ -271,7 +284,7 @@ moodSelector: {
   paddingHorizontal: 8, 
 },
  arrow: {
-   
+   marginBottom:45,
   paddingVertical: 16,
 },
   arrowText: {
@@ -284,7 +297,7 @@ moodList: {
   alignItems: 'flex-end',
   justifyContent: 'space-between', 
   flex: 1,
-  marginHorizontal: 4, 
+  marginHorizontal: -8, 
 },
  moodItem: {
   alignItems: 'center',
